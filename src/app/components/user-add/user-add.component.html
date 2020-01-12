@@ -1,0 +1,53 @@
+
+
+<div class="user-edit-class" *ngIf="identity">
+  <h1>Crear usuario Nuevo</h1>
+  <div *ngIf="alertMessage">
+      <div class="alert alert-info">
+        {{alertMessage}}
+      </div>
+    </div>
+    <form #registerForm="ngForm" (submit)="onSubmitRegister()" class="col-md-7">
+        <p>
+          <label>First Name</label>
+          <input type="text" #name="ngModel" name="name" [(ngModel)]="user_register.name"
+          class="form-control" required />
+          <span style="color: red;"
+          *ngIf="!name.valid && name.touched">Debe ingresar el nombre</span>
+        </p>
+        <p>
+          <label>Last Name</label>
+          <input type="text" #surname="ngModel" name="surname" [(ngModel)]="user_register.surname"
+          class="form-control" required />
+          <span style="color: red;"
+          *ngIf="!surname.valid && surname.touched">Debe ingresar el apellido</span>
+        </p>
+        <p>
+          <label>Email</label>
+          <input type="email" #email="ngModel"
+          name="email" [(ngModel)]="user_register.email"
+          class="form-control" required />
+          <span style="color: red;"
+          *ngIf="!email.valid && email.touched">Debe Ingresar el Email</span>
+        </p>
+        <p>
+          <label>Password</label>
+          <input type="password" #password="ngModel" name="password"
+          [(ngModel)]="user_register.password" class="form-control" required />
+          <span style="color: red;"
+          *ngIf="!password.valid && password.touched">Debe Ingresar la contraseña</span>
+        </p>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Tipo User</label>
+            <select #role="ngModel" name="role" [(ngModel)]="user_register.role" class="form-control" id="exampleFormControlSelect1" required>
+              <option>USER</option>
+              <option>ADMIN</option>
+            </select>
+            <span style="color: red;"
+          *ngIf="!role.valid && role.touched">Debe Ingresar el rol</span>
+          </div>
+
+        <input type="submit" value="Register" class="btn btn-primary" >
+      </form>
+  </div>

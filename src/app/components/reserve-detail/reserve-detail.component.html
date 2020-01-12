@@ -1,0 +1,45 @@
+<div class="user-edit-class"  *ngIf="identity">
+
+  <div class="row">
+
+    <h1>{{titulo +  ': '  + showDay }} </h1>
+    <div class="trade-75">
+      <button (click)="changePage(-1)" ><img width="25px" src="../../../assets/assets/images/icons/black/left.png" ></button>
+      <button (click)="changePage(1)" ><img width="25px" src="../../../assets/assets/images/icons/black/right.png" ></button>
+    </div>
+</div>
+<div class="" style="overflow: scroll;">
+  <div *ngIf="alertMessage">
+    <div class="alert alert-info">
+      {{alertMessage}}
+    </div>
+  </div>
+<table id="tabla-reservas" class="table table-hover table-dark" style="overflow: scroll;">
+  <thead>
+    <tr>
+      <th scope="col">Hora</th>
+      <th scope="col">Name</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Contacto</th>
+      <th scope="col">Personas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reserve of reserves">
+      <th scope="row">{{reserve.time}}</th>
+      <td>{{reserve.name}}</td>
+      <td>{{reserve.date | date : "dd-MM-yyyy"}}</td>
+      <td>{{reserve.phone + ' - '+ reserve.email}}</td>
+      <td>{{reserve.people}}</td>
+      <td *ngIf="identity.role == 'ROLE_ADMIN'">
+          <a (click)="onCancelReserve()"
+          class="btn btn-sm btn-danger" >Cancelar</a>
+      </td>
+      <td *ngIf="identity.role == 'ROLE_ADMIN'">
+          <a class="btn btn-sm btn-success" >Confirmar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

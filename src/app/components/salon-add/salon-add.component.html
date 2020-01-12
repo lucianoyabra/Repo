@@ -1,0 +1,74 @@
+
+<div class="user-edit-class" *ngIf="identity">
+  <h3>Disposicion de mesas</h3>
+  <input type="button" (click)="nuevo()" value="Nuevo" />
+  <div *ngIf="alertMessage">
+      <div class="alert alert-info">
+        {{alertMessage}}
+      </div>
+    </div>
+
+    <!--<form  #reserveForm="ngForm" (submit)="agregar()"  class="col-md-6">
+
+        <p>
+          <label>Capacity</label>
+          <input type="text" #capacity="ngModel"
+          name="capacity" [(ngModel)]="tableSelected.capacity"
+          class="form-control" required />
+        </p>
+        <p>
+            <label>Descripcion</label>
+            <input type="text" #descripcion="ngModel"
+            name="descripcion" [(ngModel)]="tableSelected.descripcion"
+            class="form-control" required />
+
+          </p>
+          <input type="submit" value="Agregar mesa" [disabled]="!reserveForm.valid" />
+
+        </form>-->
+      <div class="clearfix"></div>
+
+    <div class="row col-lg-12" id="contenedorSalon">
+      <div id="contentSalon" cdkDrop class="example-boundary" style="float: left;margin-right: 5px;" *ngIf="nuevoSalon == true">
+        <div (click)="mapearTabla($event)"
+        [style.top.px]="item.positionY"
+        [style.left.px]="item.positionX" id="contentInside" *ngFor="let item of tables" class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+          <p>{{item.number}}</p>
+        </div>
+
+        <div class="clearfix"></div>
+
+
+      </div>
+      <div class="contentEditSalon col-lg-12">
+      <form  #reserveForm="ngForm" (submit)="agregar()" class="col-lg-3" *ngIf="nuevoSalon == true ">
+
+          <p>
+            <label>Capacity</label>
+            <br>
+            <input type="text" #capacity="ngModel"
+             name="capacity" [(ngModel)]="tableSelected.capacity"
+             required />
+          </p>
+          <p>
+              <label>Descripcion</label>
+          <br>
+              <input type="text" #description="ngModel"
+              name="description" [(ngModel)]="tableSelected.description"
+               required />
+
+            </p>
+            <input type="submit" value="Agregar mesa" [disabled]="!reserveForm.valid" />
+            <input type="button" id="btnGuardar" (click)="guardar()" value="Guardar Salon" />
+          </form>
+
+          <br>
+      <form #deleteForm="ngForm" class="col-lg-3" (submit)="borrarMesa(table._id)" *ngIf="nuevoSalon == true ">
+        <p><label >Mesa N°: {{table.number}}</label></p>
+        <p><label>Capacidad: {{table.capacity}}</label></p>
+        <p><label >Descripcion: {{table.description}}</label></p>
+        <p><input type="submit" value="Borrar Mesa"  /></p>
+      </form>
+    </div>
+    </div>
+</div>
